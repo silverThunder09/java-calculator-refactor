@@ -42,35 +42,7 @@ public class App {
 
             System.out.print("사칙연산 기호를 입력해주세요: ");
             char operator = sc.next().charAt(0);
-            int result = 0;
-            boolean isValid = true;
 
-            switch (operator) {
-                case '+':
-                    result = number1 + number2;
-                    break;
-                case '-':
-                    result = number1 - number2;
-                    break;
-                case '*':
-                    result = number1 * number2;
-                    break;
-                case '/':
-                    if (number2 == 0) {
-                        System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다");
-                        isValid = false;
-                    } else {
-                        result = number1 / number2;
-                    }
-                    break;
-                default:
-                    System.out.println("잘못된 연산기호 입니다");
-                    isValid = false;
-                    break;
-            }
-            if (isValid) {
-                System.out.println("결과 값: " + result);
-            }
 
             System.out.print("더 계산하시겠습니까? (exit 입력시 종료)");
 

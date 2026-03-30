@@ -45,4 +45,11 @@ public class Calculator {
     public void setResults(List<Integer> results) {
         this.results = results;
     }
+
+    public void removeFirst() {
+        if(!results.isEmpty()){
+            System.out.println("가장 먼저 저장된 결과: " + results.get(0) + "를 삭제하였습니다.");
+            results.remove(0);
+        }
+    }
 }

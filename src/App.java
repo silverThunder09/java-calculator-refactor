@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -48,15 +49,20 @@ public class App {
             operator = sc.next().charAt(0);
             int result = calculator.calculate(number1, number2, operator);
             System.out.println("결과 값:" + result);
-            System.out.println("결과 저장 목록: " + calculator.results);
+            System.out.println("결과 저장 목록: " + calculator.getResults());
+
 
 
             System.out.print("더 계산하시겠습니까? (exit 입력시 종료)");
             String answer = sc.next();
             if (answer.equalsIgnoreCase("exit")) {
+                calculator.setResults(new ArrayList<>());
+                System.out.println("결과 저장 목록 초기화 :" + calculator.getResults());
+                sc.close();
                 break;
             }
         }
+        sc.close();
     }
 }
 

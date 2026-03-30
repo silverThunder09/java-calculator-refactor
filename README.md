@@ -1,4 +1,4 @@
-# Calculator Project_V2
+# ArithmeticCalculator Project_V2
 
 ## 📌 프로젝트 소개
 Java로 구현한 사칙연산 계산기입니다.
@@ -10,7 +10,7 @@ Java로 구현한 사칙연산 계산기입니다.
 - exit 입력 시 종료
 
 ### STEP 2 - 클래스 적용
-- Calculator 클래스로 연산 분리
+- ArithmeticCalculator 클래스로 연산 분리
 - 연산 결과 컬렉션 저장
 - 캡슐화 (private, Getter/Setter)
 - 첫 번째 결과 삭제 기능

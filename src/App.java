@@ -7,7 +7,7 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
 
-        Calculator calculator = new Calculator();
+        ArithmeticCalculator calculator = new ArithmeticCalculator();
 
         while (true) {
             int number1;
@@ -51,18 +51,19 @@ public class App {
             System.out.println("결과 값:" + result);
             System.out.println("결과 저장 목록: " + calculator.getResults());
 
-
-
             System.out.print("더 계산하시겠습니까? (exit 입력시 종료 , remove 입력시 첫번째 결과 삭제): ");
             String answer = sc.next();
             if (answer.equalsIgnoreCase("exit")) {
                 calculator.setResults(new ArrayList<>());
                 System.out.println("결과 저장 목록 초기화 :" + calculator.getResults());
-                sc.close();
                 break;
+
             }else if(answer.equalsIgnoreCase("remove")) {
-                calculator.removeFirst();
-                System.out.println("현재 결과 목록: " +calculator.getResults());
+                Integer removed = calculator.removeFirst();
+                if (removed != null) {
+                    System.out.println("가장 먼저 저장된 결과: " + removed + "를 삭제하였습니다.");
+                    System.out.println("현재 결과 목록: " +calculator.getResults());
+                }
             }
         }
         sc.close();

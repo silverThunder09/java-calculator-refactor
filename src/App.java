@@ -6,6 +6,8 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
 
+        Calculator calculator = new Calculator();
+
         while (true) {
             int number1;
             while (true) {
@@ -25,6 +27,7 @@ public class App {
             }
 
             int number2;
+            char operator;
             while (true) {
                 try {
                     System.out.print("두 번째 정수를 입력해주세요: ");
@@ -41,11 +44,14 @@ public class App {
             }
 
             System.out.print("사칙연산 기호를 입력해주세요: ");
-            char operator = sc.next().charAt(0);
+
+            operator = sc.next().charAt(0);
+            int result = calculator.calculate(number1, number2, operator);
+            System.out.println("결과 값:" + result);
+            System.out.println("결과 저장 목록: " + calculator.results);
 
 
             System.out.print("더 계산하시겠습니까? (exit 입력시 종료)");
-
             String answer = sc.next();
             if (answer.equalsIgnoreCase("exit")) {
                 break;

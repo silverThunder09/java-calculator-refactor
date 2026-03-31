@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -6,7 +7,7 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
 
-        ArithmeticCalculator<Double> calculator = new ArithmeticCalculator();
+        ArithmeticCalculator<Double> calculator = new ArithmeticCalculator<>();
 
         while (true) {
             double number1;
@@ -52,7 +53,16 @@ public class App {
 
                 // 연산이 성공한 경우에만 결과와 저장 목록 출력
                 System.out.println("결과 값:" + result);
-                System.out.println("결과 저장 목록: " + calculator.getResults());
+
+                List<Double> results = calculator.getResults();
+                System.out.println("결과 저장 목록: " + results);
+
+                if (results.size() >= 2) {
+                    System.out.print("조회 기준값을 입력해주세요: ");
+                    double searchValue = sc.nextDouble();
+                    System.out.println("입력값보다 큰 저장 결과들: " + calculator.getResultsGreaterThan(searchValue));
+                }
+
 
             } catch (IllegalArgumentException | ArithmeticException e) {
                 // 잘못된 연산자 또는 0으로 나누는 경우를 명확히 구분하여 처리
@@ -60,27 +70,32 @@ public class App {
 
             }
 
-            System.out.print("더 계산하시겠습니까? (exit 입력시 종료 , remove 입력시 첫번째 결과 삭제): ");
-            String answer = sc.next();
-            // exit 입력 시 저장 목록 초기화 후 프로그램 종료
-            if (answer.equalsIgnoreCase("exit")) {
-                calculator.clearResults();
-                System.out.println("결과 저장 목록 초기화 :" + calculator.getResults());
-                break;
+            while (true) {
+                System.out.print("더 계산하시겠습니까? (exit 입력시 종료 , remove 입력시 첫번째 결과 삭제): ");
+                String answer = sc.next();
 
-            }
-            // remove 입력 시 가장 먼저 저장된 결과 하나 삭제
-            if (answer.equalsIgnoreCase("remove")) {
-                Double removed = calculator.removeFirst();
-                if (removed != null) {
-                    System.out.println("가장 먼저 저장된 결과: " + removed + "를 삭제하였습니다.");
-                    System.out.println("현재 결과 목록: " + calculator.getResults());
-                } else {
-                    System.out.println("삭제할 결과가 없습니다.");
+                // exit 입력 시 저장 목록 초기화 후 프로그램 종료
+                if (answer.equalsIgnoreCase("exit")) {
+                    calculator.clearResults();
+                    System.out.println("결과 저장 목록 초기화 :" + calculator.getResults());
+                    sc.close();
+                    return;
                 }
+
+                // remove 입력 시 가장 먼저 저장된 결과 하나 삭제
+                if (answer.equalsIgnoreCase("remove")) {
+                    Double removed = calculator.removeFirst();
+                    if (removed != null) {
+                        System.out.println("가장 먼저 저장된 결과: " + removed + "를 삭제하였습니다.");
+                        System.out.println("현재 결과 목록: " + calculator.getResults());
+                    } else {
+                        System.out.println("삭제할 결과가 없습니다.");
+                    }
+                    continue;
+                }
+                break;
             }
         }
-        sc.close();
     }
 }
 

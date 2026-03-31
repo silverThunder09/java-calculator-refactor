@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ArithmeticCalculator<T extends Number> {
 
@@ -58,5 +59,12 @@ public class ArithmeticCalculator<T extends Number> {
             return null;
         }
         return results.remove(0);
+    }
+
+    // 저장된 결과들 중 입력값보다 큰 값만 조회(람다와 스트림 이용)
+    public List<Double> getResultsGreaterThan(double value) {
+        return results.stream()
+                .filter(result -> result > value)
+                .collect(Collectors.toList());
     }
 }
